@@ -17,13 +17,17 @@ import junit.framework.TestCase;
 
 public class AppTest extends TestCase {
 	
+	// Necessário modificar o Credentials.EMAIL por
+	// private String email = "emailaqui@email.com"
+	// Necessário modificar o Credentials.SENHA por
+	// private String senha = "coloqueASenhaDoSeuEmailAqui"
 	private String email = Credentials.EMAIL;
 	private String senha = Credentials.SENHA;
 	
 	@Test
 	public void testeEmail() {
 		
-		int count = 10;
+		int count = 2;
 		
 		/*
 		 * Olhe as configurações smtp do seu email
