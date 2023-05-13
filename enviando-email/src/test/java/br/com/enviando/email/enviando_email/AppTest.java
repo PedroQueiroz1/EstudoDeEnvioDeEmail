@@ -1,69 +1,45 @@
 package br.com.enviando.email.enviando_email;
 
-import java.util.Properties;
-
-import javax.mail.Address;
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
 import org.junit.Test;
 
 import junit.framework.TestCase;
 
 public class AppTest extends TestCase {
-	
+
 	// Necessário modificar o Credentials.EMAIL por
 	// private String email = "emailaqui@email.com"
 	// Necessário modificar o Credentials.SENHA por
 	// private String senha = "coloqueASenhaDoSeuEmailAqui"
 	private String email = Credentials.EMAIL;
 	private String senha = Credentials.SENHA;
-	
+
 	@Test
-	public void testeEmail() {
-		
-		int count = 2;
+	public void testeEmail() throws Exception {
+
+		StringBuilder sBTextoEmail = new StringBuilder();
+
+		sBTextoEmail.append("Olá, <br/><br/>");
+		sBTextoEmail.append("Você está recebendo um e-mail. <br/><br/>");
+		sBTextoEmail.append("Para acessar um link misterioso, clique no botão abaixo! <br/><br/>");
+		sBTextoEmail.append("<b>Testando...</b> <br/><br/>");
+		sBTextoEmail.append("<span style=\"font-size:8px\">Testando...</span> <br/><br/>");
+		sBTextoEmail.append(
+				"<a target=\"_blank\" href=\"https://www.google.com/search?q=do+a+barrel+roll&oq=do+a+barrel+roll&aqs=chrome..69i57j0i271.149j0j9&sourceid=chrome&ie=UTF-8\" "
+						+ "style=\"" + "color:#2525a7; " + "padding: 14px 25px; " + "text-align:center; "
+						+ "text-decoration: none; " + "display:inline-block; " + "border-radius:30px; "
+						+ "font-size:20px; " + "font-family:courier; " + "border: 3px solid green;"
+						+ "background-color:#99DA39;\">Acessar Link</a>");
+
+		ObjetoEnviaEmail email = new ObjetoEnviaEmail("pedroqueir0z@outlook.com, pedrotestejava@outlook.com",
+				"Pedro Queiroz - Teste de Envio de Email", "Chegou o email enviado com java", sBTextoEmail.toString());
+
+		//email.enviarEmail(true);
+		email.enviarEmailAnexo(true);
 		
 		/*
-		 * Olhe as configurações smtp do seu email
+		 * Caso o e-mail não esteja sendo enviado, então coloque um tempo de espera. Mas
+		 * isso só pode ser usado para testes!
+		 * Thread.sleep(10000);
 		 */
-		try {
-		Properties properties = new Properties();
-		properties.put("mail.smtp.auth", "true"); // Autorização
-		properties.put("mail.smtp.starttls.enable", "true"); // Autenticação
-		properties.put("mail.smtp.host", "smtp-mail.outlook.com"); // Servidor Outlook
-		properties.put("mail.smtp.port", "587"); // Porta do servidor
-		properties.put("mail.smtp.socketFactory.port", "587"); // Expecifica a porta a ser conectada pelo socket
-		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		
-		Session session = Session.getInstance(properties, new Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(email, senha);
-			}
-		});
-		
-		Address[] toUser = InternetAddress.parse("pedroqueir0z@outlook.com, pedrotestejava@outlook.com");
-		
-		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(email));  /*Quem está enviando*/
-		message.setRecipients(Message.RecipientType.TO, toUser); // Email de destino
-		message.setSubject("Chegou o email enviado com java");  // Assunto do Email
-		message.setText("Olá! O envio do e-mail com java deu certo.");
-		
-		for(int i = 0; i < count; i++) {
-		Transport.send(message);
-		}
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-		}
 	}
-	
 }
