@@ -18,7 +18,7 @@
   Projeto criado para o estudo de envio de e-mail com JavaMail.
  
 ## Ferramentas utilizadas
-[![My Skills](https://skillicons.dev/icons?i=java)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,html,css)](https://skillicons.dev)
 
 ## Acesso ao projeto
 
