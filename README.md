@@ -15,7 +15,7 @@
 ## Descrição do projeto 
 
 <p align="justify">
-  Projeto criado para o estudo de envio de e-mail com JavaMail.
+  Projeto criado para o estudo de envio de e-mail com JavaMail. <br>
   Nesse projeto é possível enviar e-mail com formatação em HTML e CSS, além de adicionar várioas anexos com conteúdo.
  
 ## Ferramentas utilizadas
